@@ -1,0 +1,130 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+Modal Popup - Twitter Bootstrap
+</title>
+<link href="https://dl.dropbox.com/u/96099766/DetailModalExample/bootstrap.css" rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://dl.dropbox.com/u/96099766/DetailModalExample/bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript">
+function populateDetail(rowNumber){
+$('#detail').empty();
+if(rowNumber==1){
+$('#detail').append('<tr><td>Code</td><td>Name</td><td>Continent</td><td>Surface Area</td><td>Population</td><td>Year of Independence</td><td>Local Name</td><td>Capital</td><td>Head of State</td></tr><tr><td>ABW</td><td>Aruba</td><td>North America</td><td>Caribbean</td><td>103000</td><td>&nbsp;</td><td>Aruba</td><td>129</td><td>Beatrix</td></tr>');
+}
+else if(rowNumber==2){
+$('#detail').append('<tr><td>Code</td><td>Name</td><td>Continent</td><td>Surface Area</td><td>Population</td><td>Year of Independence</td><td>Local Name</td><td>Capital</td><td>Head of State</td></tr><tr><td>AFG</td><td>Afghanistan</td><td>Asia</td><td>Southern and Central Asia</td><td>22720000</td><td>1919</td><td>Afganistan/Afqanestan</td><td>1</td><td>Mohammad Omar</td></tr>');
+}
+else if(rowNumber==3){
+$('#detail').append('<tr><td>Code</td><td>Name</td><td>Continent</td><td>Surface Area</td><td>Population</td><td>Year of Independence</td><td>Local Name</td><td>Capital</td><td>Head of State</td></tr><tr><td>AGO</td><td>Angola</td><td>Africa</td><td>Central Africa</td><td>12878000</td><td>1975</td><td>Angola</td><td>56</td><td>Jos&#233; Eduardo dos Santos</td></tr>');
+}
+else if(rowNumber==4){
+$('#detail').append('<tr><td>Code</td><td>Name</td><td>Continent</td><td>Surface Area</td><td>Population</td><td>Year of Independence</td><td>Local Name</td><td>Capital</td><td>Head of State</td></tr><tr><td>AIA</td><td>Anguilla</td><td>North America</td><td>Caribbean</td><td>8000</td><td>&nbsp;</td><td>Anguilla</td><td>62</td><td>Elisabeth II</td></tr>');
+}
+else if(rowNumber==5){
+$('#detail').append('<tr><td>Code</td><td>Name</td><td>Continent</td><td>Surface Area</td><td>Population</td><td>Year of Independence</td><td>Local Name</td><td>Capital</td><td>Head of State</td></tr><tr><td>ALB</td><td>Albania</td><td>Europe</td><td>Southern Europe</td><td>3401200</td><td>1912</td><td>Shqip&#235;ria</td><td>34</td><td>Rexhep Mejdani</td></tr>');
+}
+else if(rowNumber==6){
+$('#detail').append('<tr><td>Code</td><td>Name</td><td>Continent</td><td>Surface Area</td><td>Population</td><td>Year of Independence</td><td>Local Name</td><td>Capital</td><td>Head of State</td></tr><tr><td>AND</td><td>Andorra</td><td>Europe</td><td>Southern Europe</td><td>78000</td><td>1278</td><td>Andorra</td><td>55</td><td>&nbsp;</td></tr>');
+}
+else if(rowNumber==7){
+$('#detail').append('<tr><td>Code</td><td>Name</td><td>Continent</td><td>Surface Area</td><td>Population</td><td>Year of Independence</td><td>Local Name</td><td>Capital</td><td>Head of State</td></tr><tr><td>ANT</td><td>Netherlands Antilles</td><td>North America</td><td>Caribbean</td><td>217000</td><td>&nbsp;</td><td>Nederlandse Antillen</td><td>33</td><td>Beatrix</td></tr>');
+}
+TransposeTable('detail');
+$('#currentdetail').modal('show');			
+}
+function TransposeTable(tableId)
+{        
+    var tbl = $('#' + tableId);
+    var tbody = tbl.find('tbody');
+    var oldWidth = tbody.find('tr:first td').length;
+    var oldHeight = tbody.find('tr').length;
+    var newWidth = oldHeight;
+    var newHeight = oldWidth;
+
+    var jqOldCells = tbody.find('td');        
+
+    var newTbody = $("<tbody></tbody>");
+    for(var y=0; y<newHeight; y++)
+    {
+        var newRow = $("<tr></tr>");
+        for(var x=0; x<newWidth; x++)
+        {
+            newRow.append(jqOldCells.eq((oldWidth*x)+y));
+        }
+        newTbody.append(newRow);
+    }
+
+    tbody.replaceWith(newTbody);        
+}
+</script>
+</head>
+<body>
+    <form id="form1">
+    <div>
+	<div>
+            <h2 style="text-align:center;">Display DetailsView in Modal Dialog using Twitter Bootstrap</h2>
+            <p style="text-align:center;">Demo by Priya Darshini - Tutorial @ <a href="javascript:parent.window.location.href='http://www.programming-free.com/2013/02/gridviewrow-details-modalpopup-bootstrap.html'">Programmingfree</a></p>                     
+               
+			   <div>
+		<table class="table table-hover table-striped" cellspacing="0" align="Center" rules="all" border="1" id="GridView1" style="width:940px;border-collapse:collapse;">
+			<tr>
+				<th scope="col">Detailed View</th><th scope="col">Code</th><th scope="col">Name</th><th scope="col">Continent</th><th scope="col">Surface Area</th><th scope="col">Population</th><th scope="col">Year of Independence</th><th scope="col">Local Name</th><th scope="col">Capital</th><th scope="col">Head of State</th>
+			</tr><tr>
+				<td><input type="button" value="Detail" onclick="populateDetail(1)" class="btn btn-info" /></td><td>ABW</td><td>Aruba</td><td>North America</td><td>Caribbean</td><td>103000</td><td>&nbsp;</td><td>Aruba</td><td>129</td><td>Beatrix</td>
+			</tr><tr>
+				<td><input type="button" value="Detail" onclick="populateDetail(2)"  class="btn btn-info" /></td><td>AFG</td><td>Afghanistan</td><td>Asia</td><td>Southern and Central Asia</td><td>22720000</td><td>1919</td><td>Afganistan/Afqanestan</td><td>1</td><td>Mohammad Omar</td>
+			</tr><tr>
+				<td><input type="button" value="Detail" onclick="populateDetail(3)"  class="btn btn-info" /></td><td>AGO</td><td>Angola</td><td>Africa</td><td>Central Africa</td><td>12878000</td><td>1975</td><td>Angola</td><td>56</td><td>Jos&#233; Eduardo dos Santos</td>
+			</tr><tr>
+				<td><input type="button" value="Detail" onclick="populateDetail(4)"  class="btn btn-info" /></td><td>AIA</td><td>Anguilla</td><td>North America</td><td>Caribbean</td><td>8000</td><td>&nbsp;</td><td>Anguilla</td><td>62</td><td>Elisabeth II</td>
+			</tr><tr>
+				<td><input type="button" value="Detail" onclick="populateDetail(5)"  class="btn btn-info" /></td><td>ALB</td><td>Albania</td><td>Europe</td><td>Southern Europe</td><td>3401200</td><td>1912</td><td>Shqip&#235;ria</td><td>34</td><td>Rexhep Mejdani</td>
+			</tr><tr>
+				<td><input type="button" value="Detail" onclick="populateDetail(6)"  class="btn btn-info" /></td><td>AND</td><td>Andorra</td><td>Europe</td><td>Southern Europe</td><td>78000</td><td>1278</td><td>Andorra</td><td>55</td><td>&nbsp;</td>
+			</tr><tr>
+				<td><input type="button" value="Detail" onclick="populateDetail(7)"  class="btn btn-info" /></td><td>ANT</td><td>Netherlands Antilles</td><td>North America</td><td>Caribbean</td><td>217000</td><td>&nbsp;</td><td>Nederlandse Antillen</td><td>33</td><td>Beatrix</td>
+			</tr>
+		</table>
+	</div>
+            </div>
+        
+</div>
+    <div id="UpdateProgress1" style="display:none;">
+	
+            <br />
+        <img src="" alt="Loading.. Please wait!"/>
+        
+</div>
+    <div id="currentdetail" class="modal hide fade" tabindex=-1 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Detailed View</h3>
+	</div>
+	<div id="detail_view" class="modal-body">
+		<div id="UpdatePanel2">
+			<table id="detail" class="table table-condensed table-bordered table-hover">
+			
+			</table>
+		<div>
+
+	</div>
+		
+</div>
+	<div class="modal-footer">
+		<button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+	</div>
+</div>
+    </div>
+    </div>
+    
+
+
+</form>
+</body>
+</html>
+                       
